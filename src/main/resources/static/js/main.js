@@ -53,7 +53,6 @@ function createChart(currFrom, currTo, days, updateButtons) {
     if (hasAlreadyBeenUpdated(currFrom, currTo)) return;
 
     $("#chartContainer").html("<img src=\"https://i.imgur.com/fXUIBfi.gif\" alt=\"Chart will appear here...\" style=\"margin-top: 10%\"/>");
-    console.error('iletego');
     var dataPoints = [];
     var btn1W = $("#1W_scale");
     var btn2W = $("#2W_scale");
@@ -119,7 +118,7 @@ function createChart(currFrom, currTo, days, updateButtons) {
             if (hasAlreadyBeenUpdated(currFrom, currTo)) return;
 
             setTimeout(function() {
-                // createChart(currFrom, currTo, days, updateButtons)
+                createChart(currFrom, currTo, days, updateButtons)
             }, 5000);
         }
     });
