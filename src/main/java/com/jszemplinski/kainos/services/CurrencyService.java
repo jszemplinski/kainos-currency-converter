@@ -73,7 +73,7 @@ public class CurrencyService {
         }
     }
 
-    public String getHistoricalData(String currFrom, String currTo, int dayLimit) {
+    public String getHistoricalData(String currFrom, String currTo) {
         String uri = URI_AV + "function=FX_DAILY&from_symbol=" + currFrom +
                 "&to_symbol=" + currTo + "&apikey=" + API_KEY;
         String json = restTemplate.getForObject(uri, String.class);
@@ -93,15 +93,6 @@ public class CurrencyService {
                 JSONObject item = new JSONObject();
                 item.put(date, value);
                 resultArr.add(item);
-            }
-
-            if (dayLimit != -1) {
-                JSONArray resultArrScaled = new JSONArray();
-                for (int i = resultArr.size() - 1; i >= resultArr.size() - dayLimit && i >= 0; --i) {
-                    resultArrScaled.add(resultArr.get(i));
-                }
-
-                return resultArrScaled.toJSONString();
             }
 
             return resultArr.toJSONString();

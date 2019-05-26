@@ -37,11 +37,10 @@ public class CurrencyController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/getHistoricalData/{currFrom}/{currTo}/{dayLimit}")
+    @GetMapping("/getHistoricalData/{currFrom}/{currTo}")
     public ResponseEntity<?> getHistoricalData(@PathVariable("currFrom") String currFrom,
-                                               @PathVariable("currTo") String currTo,
-                                               @PathVariable("dayLimit") int dayLimit) {
-        String response = currencyService.getHistoricalData(currFrom, currTo, dayLimit);
+                                               @PathVariable("currTo") String currTo) {
+        String response = currencyService.getHistoricalData(currFrom, currTo);
         if (response == null) return ResponseEntity.unprocessableEntity().build();
 
         return ResponseEntity.ok(response);
