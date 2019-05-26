@@ -1,5 +1,5 @@
 body {
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 #realTimeExchangeRate {
@@ -23,7 +23,7 @@ body {
 }
 
 #chartHeader {
-    margin-top: 2.5%;
+    margin-top: 1%;
 }
 
 #chartContainer {
@@ -39,10 +39,7 @@ hr {
     margin: 20px 0;
 }
 
-.page-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+.signature {
     width: 100%;
-    padding: 10px;
+    color: #7c8280;
 }

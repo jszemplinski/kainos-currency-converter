@@ -145,10 +145,6 @@ function renderChart(dataPoints, min, max, trendlines) {
     }];
 
     if (trendlines) {
-
-
-        // TODO: calc trendlines here, check localstorage for existence
-
         var slopes = [];
         var pointsIndices = [];
         for (var i = 1; i < dataPoints.length - 1; ++i) {
@@ -177,7 +173,6 @@ function renderChart(dataPoints, min, max, trendlines) {
                 });
             }
         }
-        // TODO: calc trendlines here
 
         axisY = [
             {

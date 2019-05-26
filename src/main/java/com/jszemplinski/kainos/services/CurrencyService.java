@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,14 +18,19 @@ import java.util.Iterator;
 @Service
 public class CurrencyService {
 
-    private final String API_KEY = "HOVK82G2EQNQ04GA";
+    private final Environment environment;
+
+    private String API_KEY;
     private final String URI_OER = "https://openexchangerates.org/api/currencies.json";
     private final String URI_AV = "https://www.alphavantage.co/query?";
 
     private RestTemplate restTemplate;
 
-    public CurrencyService() {
+    @Autowired
+    public CurrencyService(Environment environment) {
         this.restTemplate = new RestTemplate();
+        this.API_KEY = environment.getProperty("API_KEY");
+        this.environment = environment;
     }
 
     public String getAvailableCurrencies() {
@@ -60,6 +66,7 @@ public class CurrencyService {
             ObjectNode node = (ObjectNode)mapper.readTree(json);
             JsonNode dataNode = node.get("Realtime Currency Exchange Rate");
             if (dataNode == null) return null;
+
             return dataNode.findValue("5. Exchange Rate").asDouble();
         } catch (IOException e) {
             return null;
@@ -78,6 +85,7 @@ public class CurrencyService {
             ObjectNode node = (ObjectNode)mapper.readTree(json);
             JsonNode dataNode = node.get("Time Series FX (Daily)");
             if (dataNode == null) return null;
+
             for (Iterator<String> it = dataNode.fieldNames(); it.hasNext(); ) {
                 String date = it.next();
                 String value = dataNode.get(date).findValue("1. open").asText();
@@ -92,6 +100,7 @@ public class CurrencyService {
                 for (int i = resultArr.size() - 1; i >= resultArr.size() - dayLimit && i >= 0; --i) {
                     resultArrScaled.add(resultArr.get(i));
                 }
+
                 return resultArrScaled.toJSONString();
             }
 
