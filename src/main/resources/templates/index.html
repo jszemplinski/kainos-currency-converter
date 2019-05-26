@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="col-md-12 align-items-center">
+
+        <h1 class="text-center">Select exchange currencies</h1>
+
+        <hr>
+
+        <div class="row" style="margin-bottom: 5%">
+            <div class="col-md-6">
+                <label for="curr_from"><h3>From:</h3></label>
+                <select class="form-control currency_dropdown" id="curr_from" disabled="disabled">
+                    <option value="" disabled="disabled" selected="selected">Select</option>
+                </select>
+                <br>
+                <label for="curr_to"><h3>To:</h3></label>
+                <select class="form-control currency_dropdown" id="curr_to" disabled="disabled">
+                    <option value="" disabled="disabled" selected="selected">Select</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <div id="realTimeExchangeRate" class="shadow-lg p-3 mb-5 bg-white rounded text-center">
+                    <span class="header">Real time exchange rate:</span><br>
+                    <span class="data">--</span>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="chartHeader" class="text-center">
+            <h3>Historical exchange chart</h3>
+
+            <button type="button" class="btn btn-info btn-scale" id="1W_scale" onclick="updateChart(this, 7); setActive(this)" disabled="disabled">1 Week</button>
+            <button type="button" class="btn btn-info btn-scale" id="2W_scale" onclick="updateChart(this, 14); setActive(this)" disabled="disabled">2 Weeks</button>
+            <button type="button" class="btn btn-info btn-scale" id="1M_scale" onclick="updateChart(this, 30); setActive(this)" disabled="disabled">1 Month</button>
+            <button type="button" class="btn btn-info btn-scale" id="6M_scale" onclick="updateChart(this, 180); setActive(this)" disabled="disabled">6 Months</button>
+            <button type="button" class="btn btn-secondary" id="trendlines_btn" onclick="toggleTrendlines(this)" disabled="disabled">Turn trendlines on</button>
+        </div>
+
+        <div id="chartContainer" class="text-center">
+
+        </div>
+
+
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
