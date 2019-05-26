@@ -260,6 +260,7 @@ function updateData(currFrom, currTo) {
 
 function setActive(e) {
     if ($(e).hasClass("btn-success")) {
+        $(e).addClass("btn-info").removeClass("btn-success");
         return;
     }
 
