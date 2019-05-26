@@ -25,6 +25,7 @@ function populateCurrencyDropdowns() {
 
                 if (currFrom !== "" && currTo !== "") {
                     updateData(currFrom, currTo);
+                    createChart(currFrom, currTo, -1, true);
                 }
             });
         },
@@ -238,8 +239,6 @@ function toggleTrendlines(e) {
 function updateData(currFrom, currTo) {
     var target = $("#realTimeExchangeRate").children("span.data");
     target.text("Fetching data...");
-
-    createChart(currFrom, currTo, -1, true);
 
     $.ajax({
         url: "/api/getRTExchangeRate/" + currFrom + "/" + currTo,
