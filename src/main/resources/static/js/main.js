@@ -254,7 +254,7 @@ function updateData(currFrom, currTo) {
 
             setTimeout(function() {
                 updateData(currFrom, currTo);
-            })
+            }, 5000);
         }
     });
 }
